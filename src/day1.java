@@ -13,9 +13,14 @@ public class day1 {
         for (int expense : inputInt) {
             if (expense < goal) {
                 for (int secondexpense : inputInt) {
-                    if (expense + secondexpense == goal) {
-                        System.out.println(expense + ";" + secondexpense);
-                        result = expense * secondexpense;
+                    if (expense + secondexpense < goal) {
+                        for (int thirdexpense : inputInt) {
+                            if (expense + secondexpense + thirdexpense == goal) {
+                                System.out.println(expense + ";" + secondexpense + ";" + thirdexpense);
+                                result = expense * secondexpense * thirdexpense;
+                            }
+                    }
+                    
                     }
                 }
             }
