@@ -1,23 +1,24 @@
-import java.util.List;
+import java.util.*;
 
 public class day5 {
     public static void main(String[] args) {
         List<String> input = readByLine.readAsString("day5.txt");
+        List<Integer> takenSeats = new ArrayList<Integer>();
         
-        int highestSeat = 0;
         for (String pass : input) {
             int seat = getSeat(pass);
-            if (seat > highestSeat) {
-                highestSeat = seat;
-            }
+            takenSeats.add(seat);
         }
-        System.out.println(highestSeat);
-
+        Collections.sort(takenSeats);
+        int lastSeat = takenSeats.get(0);
+        for (int i = 1; i < takenSeats.size(); i++) {
+            if (takenSeats.get(i) - lastSeat > 1) {
+                System.out.println("diff > 1 at seat:" + takenSeats.get(i) + " -> own seat is: " + (takenSeats.get(i)-1));
+            }
+            lastSeat = takenSeats.get(i);
+        }
     }
     
-//    public int getSeat(String code) {
-//        String row = code.substring(0, 7); //first 8 bits are the row
-//    }
     
     public static int getDecimal(String row) {
         int result = 0;
